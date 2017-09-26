@@ -42,7 +42,7 @@ namespace UWPTestApp
             //Get a list of files from the music library
             IReadOnlyList<StorageFile> files = await KnownFolders.MusicLibrary.GetFilesAsync();
             //Select random file from the music library
-            StorageFile infoFile = files[new Random().Next(0, files.Count - 1)];
+            StorageFile infoFile = await StorageFile.GetFileFromPathAsync(files[new Random().Next(0, files.Count - 1)].Path);
 
             //Create a MediaSource and add it to a MediaPlaybackList
             MediaSource source = MediaSource.CreateFromStorageFile(infoFile);
